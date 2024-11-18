@@ -72,6 +72,34 @@
                     </div>
                 </form>
             </dialog>
+            <dialog id="reader-dialog" class="modal reader-modal">
+                <div class="reader-header">
+                    <h2 id="reader-title"></h2>
+                    <div class="header-controls">
+                        <button class="tool-button" id="maximize-reader">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="tool-button" id="close-reader">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="reader-content">
+                    <div class="book-spread">
+                        <div class="page left-page" id="left-page"></div>
+                        <div class="page right-page" id="right-page"></div>
+                    </div>
+                    <div class="page-navigation">
+                        <button id="prev-page" class="nav-btn">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <span id="page-counter"></span>
+                        <button id="next-page" class="nav-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </dialog>
         </main>
     </div>
     <script src="script.js"></script>

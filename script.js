@@ -4,6 +4,14 @@ const bookForm = document.getElementById('book-form');
 const cancelBtn = document.getElementById('cancel-btn');
 const coverInput = document.getElementById('cover');
 const coverPreview = document.querySelector('.cover-preview');
+const readerDialog = document.getElementById('reader-dialog');
+const readerTitle = document.getElementById('reader-title');
+const leftPage = document.getElementById('left-page');
+const rightPage = document.getElementById('right-page');
+const pageCounter = document.getElementById('page-counter');
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const closeReaderBtn = document.getElementById('close-reader');
 
 newBookBtn.addEventListener('click', () => {
     
@@ -19,6 +27,34 @@ cancelBtn.addEventListener('click', () => {
     bookForm.reset();
     coverPreview.innerHTML = '';
 });
+
+closeReaderBtn.addEventListener('click', () => {
+    readerDialog.close();
+    currentBook = null;
+    currentSpread = 0;
+});
+
+nextPageBtn.addEventListener('click', nextSpread);
+prevPageBtn.addEventListener('click', prevSpread);
+
+document.addEventListener('keydown', (e) => {
+    if (readerDialog.open) {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            nextSpread();
+            e.preventDefault();
+        } else if (e.key === 'ArrowLeft') {
+            prevSpread();
+            e.preventDefault();
+        } else if (e.key === 'Escape') {
+            readerDialog.close();
+            currentBook = null;
+            currentSpread = 0;
+        }
+    }
+});
+
+let currentBook = null;
+let currentSpread = 0; 
 
 function Book(title, author, pages, read, coverUrl = null) {
     this.title = title;
@@ -37,6 +73,7 @@ function createBookCard(book, index) {
 
     const coverContainer = document.createElement('div');
     coverContainer.classList.add('book-cover');
+    coverContainer.addEventListener('click', () => openReader(book));
     
     if (book.coverUrl) {
         const coverImg = document.createElement('img');
@@ -133,6 +170,50 @@ function addBookToLibrary() {
     const newBook = new Book(title, author, pages, read, coverUrl);
     myLibrary.push(newBook);
     displayBooks();
+}
+
+function openReader(book) {
+    currentBook = book;
+    currentSpread = 0;
+    readerTitle.textContent = book.title;
+    updateSpreadContent();
+    readerDialog.showModal();
+}
+
+function updateSpreadContent() {
+    const leftPageNum = currentSpread * 2;
+    const rightPageNum = leftPageNum + 1;
+
+    if (leftPageNum === 0) {
+        leftPage.innerHTML = '<div class="page-content"></div>';
+    } else {
+        leftPage.innerHTML = `<div class="page-content">Example Page ${leftPageNum}</div>`;
+    }
+
+    if (rightPageNum <= currentBook.pages) {
+        rightPage.innerHTML = `<div class="page-content">Example Page ${rightPageNum}</div>`;
+    } else {
+        rightPage.innerHTML = '<div class="page-content"></div>';
+    }
+
+    pageCounter.textContent = `${rightPageNum} of ${currentBook.pages}`;
+
+    prevPageBtn.disabled = currentSpread === 0;
+    nextPageBtn.disabled = rightPageNum >= currentBook.pages;
+}
+
+function nextSpread() {
+    if ((currentSpread * 2 + 2) < currentBook.pages) {
+        currentSpread++;
+        updateSpreadContent();
+    }
+}
+
+function prevSpread() {
+    if (currentSpread > 0) {
+        currentSpread--;
+        updateSpreadContent();
+    }
 }
 
 sampleBooks.forEach(book => myLibrary.push(book));
