@@ -8,7 +8,19 @@
     --toolbar-width: 64px;
 }
 
-/* Toolbar Base Structure */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
 .toolbar {
     width: var(--toolbar-width);
     background-color: var(--toolbar-bg);
@@ -27,7 +39,6 @@
     align-items: center;
 }
 
-/* Button Styles */
 .tool-button {
     background: none;
     border: none;
@@ -51,14 +62,12 @@
     font-size: 1.5rem;
 }
 
-/* Logo Styles */
 .toolbar-logo {
     width: 72px;
     height: 72px;
     cursor: default;
 }
 
-/* Add Button Styles */
 .add-button {
     background-color: var(--accent-blue);
     color: var(--text-primary);
@@ -72,7 +81,6 @@
     transform: scale(1.1);
 }
 
-/* Avatar Styles */
 .avatar-button {
     width: 48px;
     height: 48px;
@@ -85,4 +93,86 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: var(--toolbar-width);
+    padding: 2rem;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.book-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+}
+
+.book-cover {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.book-cover.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.book-info {
+    padding: 1rem;
+}
+
+.book-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.book-author {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.book-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.book-actions button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    min-width: 32px;
+}
+
+.book-actions button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
 }
