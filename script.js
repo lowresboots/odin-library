@@ -122,6 +122,20 @@ function createBookCard(book, index) {
     return bookCard;
 }
 
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
+}
+
+function toggleReadStatus(index) {
+    myLibrary[index].toggleRead();
+    displayBooks();
+}
+
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+};
+
 function displayBooks() {
     const libraryContainer = document.getElementById('library-container');
     libraryContainer.innerHTML = '';
