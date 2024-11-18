@@ -1,0 +1,88 @@
+:root {
+    --bg-dark: #0a1929;
+    --bg-card: #0f2537;
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --accent-blue: #1e4d8c;
+    --toolbar-bg: #0f2537;  
+    --toolbar-width: 64px;
+}
+
+/* Toolbar Base Structure */
+.toolbar {
+    width: var(--toolbar-width);
+    background-color: var(--toolbar-bg);
+    padding: 1.5rem 0;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar-items {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Button Styles */
+.tool-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.tool-button:hover:not(.add-button):not(.logo-button) {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tool-button i {
+    font-size: 1.5rem;
+}
+
+/* Logo Styles */
+.toolbar-logo {
+    width: 72px;
+    height: 72px;
+    cursor: default;
+}
+
+/* Add Button Styles */
+.add-button {
+    background-color: var(--accent-blue);
+    color: var(--text-primary);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+    margin: 1rem 0;
+}
+
+.add-button:hover {
+    background-color: #2861b1;
+    transform: scale(1.1);
+}
+
+/* Avatar Styles */
+.avatar-button {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
