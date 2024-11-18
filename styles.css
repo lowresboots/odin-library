@@ -176,3 +176,135 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
 }
+
+.modal {
+    border: none;
+    border-radius: 12px;
+    padding: 2rem;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.file-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.75rem;
+    width: 100%;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    pointer-events: none;
+}
+
+.file-input::-webkit-file-upload-button {
+    background-color: var(--accent-blue);
+    color: var(--text-primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 1rem;
+    pointer-events: auto;
+}
+
+.file-input::-webkit-file-upload-button:hover {
+    background-color: #2861b1;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: var(--text-primary);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.cover-preview {
+    margin-top: 1rem;
+    width: 150px;
+    aspect-ratio: 2/3;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.cover-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.submit-btn, .cancel-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.submit-btn {
+    background-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.submit-btn:hover {
+    background-color: #2861b1;
+}
+
+.cancel-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

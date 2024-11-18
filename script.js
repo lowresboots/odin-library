@@ -1,8 +1,23 @@
 const newBookBtn = document.getElementById('new-book-btn');
+const bookDialog = document.getElementById('book-dialog');
+const bookForm = document.getElementById('book-form');
+const cancelBtn = document.getElementById('cancel-btn');
+const coverInput = document.getElementById('cover');
+const coverPreview = document.querySelector('.cover-preview');
 
 newBookBtn.addEventListener('click', () => {
     
     console.log('Add book button clicked');
+});
+
+newBookBtn.addEventListener('click', () => {
+    bookDialog.showModal();
+});
+
+cancelBtn.addEventListener('click', () => {
+    bookDialog.close();
+    bookForm.reset();
+    coverPreview.innerHTML = '';
 });
 
 function Book(title, author, pages, read, coverUrl = null) {
@@ -84,6 +99,41 @@ const sampleBooks = [
     new Book('1984', 'George Orwell', 328, true, 'images/1984.jpg'),
     new Book('Pride and Prejudice', 'Jane Austen', 432, false, 'images/prideandprejudice.jpg')
 ];
+
+coverInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            coverPreview.innerHTML = `<img src="${e.target.result}" alt="Cover preview">`;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+bookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addBookToLibrary();
+    bookDialog.close();
+    bookForm.reset();
+    coverPreview.innerHTML = '';
+});
+
+function addBookToLibrary() {
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = parseInt(document.getElementById('pages').value);
+    const read = document.getElementById('read').checked;
+    
+    let coverUrl = null;
+    if (coverPreview.querySelector('img')) {
+        coverUrl = coverPreview.querySelector('img').src;
+    }
+
+    const newBook = new Book(title, author, pages, read, coverUrl);
+    myLibrary.push(newBook);
+    displayBooks();
+}
 
 sampleBooks.forEach(book => myLibrary.push(book));
 displayBooks();
