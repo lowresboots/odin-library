@@ -56,12 +56,18 @@ document.addEventListener('keydown', (e) => {
 let currentBook = null;
 let currentSpread = 0; 
 
-function Book(title, author, pages, read, coverUrl = null) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.coverUrl = coverUrl;
+class Book {
+    constructor(title, author, pages, read, coverUrl = null) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.coverUrl = coverUrl;
+    }
+
+    toggleRead() {
+        this.read = !this.read;
+    }
 }
 
 const myLibrary = [];
@@ -131,10 +137,6 @@ function toggleReadStatus(index) {
     myLibrary[index].toggleRead();
     displayBooks();
 }
-
-Book.prototype.toggleRead = function() {
-    this.read = !this.read;
-};
 
 function displayBooks() {
     const libraryContainer = document.getElementById('library-container');
